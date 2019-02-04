@@ -1,0 +1,3 @@
+tr -s ' ' ',' < geode.2019-01-29 > geode.2019-01-29.csv
+
+https://stackoverflow.com/questions/1271222/replace-whitespace-with-a-comma-in-a-text-file-in-linux

@@ -1,0 +1,153 @@
+#! /usr/bin/python
+import os
+from optparse import OptionParser, SUPPRESS_HELP
+import subprocess
+
+NORMAL = "\033[0;39m"
+RED = "\033[31m"
+
+
+def run_gpfs_quota_command():
+    DEVNULL = open(os.devnull, 'wb')
+    openargs = '/usr/lpp/mmfs/bin/mmlsquota --block-size 2G -C GSB.gsb0 /dev/gpfs:RFS.HOMED
+IRS'
+    process = subprocess.Popen(openargs, shell=True, stdout=subprocess.PIPE, stderr=DEVNULL
+)
+    output, unused_err = process.communicate()
+    retcode = process.poll()
+    if retcode:
+        raise subprocess.CalledProcessError(retcode, 'mmlsquota')
+    return output
+
+
+def get_home_quota(loader):
+    values = loader().split('\n')[-2].split()
+    return values[3], values[4]
+
+
+def quota_file(file_arg):
+    if file_arg: return file_arg
+    if 'QUOTA_FILE' in os.environ:
+        return os.environ['QUOTA_FILE']
+    return "quota_list.txt"
+
+
+def user_lookup(user):
+    if user: return user
+    return os.environ['USER']
+
+
+def get_percentiles(c, users):
+    home_values = []
+    dc2_values = []
+    sda_values = []
+    for u in users:
+        try:
+            home_values.append(float(u[1]))
+            dc2_values.append(float(u[4]))
+            sda_values.append(float(u[6]))
+        except:
+            pass
+
+    home_values = sorted(home_values)
+    dc2_values = sorted(dc2_values)
+    sda_values = sorted(sda_values)
+    home_percentile = False
+    dc2_percentile = False
+    sda_percentile = False
+    for i in range(len(home_values)):
+        if not home_percentile:
+            if home_values[i] > float(c[1]):
+                home_percentile = i * 1.0 / len(home_values) * 100
+        if not dc2_percentile:
+            if dc2_values[i] > float(c[4]):
+                dc2_percentile = i * 1.0 / len(dc2_values) * 100
+        if not sda_percentile:
+            if sda_values[i] > float(c[6]):
+                sda_percentile = i * 1.0 / len(sda_values) * 100
+    return dc2_percentile, home_percentile, sda_percentile
+
+
+def add_column(table, column):
+    for i in range(len(column)):
+        table[i].append(column[i])
+
+
+def load_data(users, user, live_loader=None):
+    result = [u for u in users if u[0] == user][0]
+    if live_loader:
+        try:
+            result[1], result[3] = get_home_quota(live_loader)
+            result[2] = 'Now'
+        except subprocess.CalledProcessError:
+            pass
+    return result
+
+
+def create_table(users, show_percentile, user_data):
+    table = [['Filesystem'], ['home'], ['dc2/scratch'], ['sda']]
+    add_column(table, ['usage', user_data[1] + 'G', user_data[4] + 'G', user_data[6] + 'G']
+)
+    add_column(table, ['quota', user_data[3] + 'G', 'none', '50.00T'])
+    add_column(table, create_percent_column(user_data))
+    add_column(table, ['computed', user_data[2], user_data[5], user_data[7]])
+    if show_percentile:
+        dc2_percentile, home_percentile, sda_percentile = get_percentiles(user_data, users)
+        add_column(table,
+                   ['percentile', "%.1f%%" % home_percentile, "%.1f%%" % dc2_percentile, "%
+.1f%%" % sda_percentile])
+    return table
+
+
+def display_table(table, alert_rows):
+    for row in table:
+        color = RED if row in alert_rows else NORMAL
+        for column in row:
+            print color + str(column).ljust(14),
+        print NORMAL
+
+
+def get_alert_rows(user_data):
+    LIMIT = 0.95
+    home = float(user_data[1]) / float(user_data[3])
+    sda = float(user_data[6]) / float(50 * 1024)
+    if home > LIMIT: yield 1
+    if sda > LIMIT: yield 3
+
+
+def create_percent_column(user_data):
+    return ['%', "%.1f%%" % (100 * float(user_data[1]) / float(user_data[3])), '--',
+            "%.1f%%" % (100 * float(user_data[6]) / float(50*1024))]
+
+
+def main(user, filename, show_percentile, live_data):
+    try:
+        with open(filename) as quotas:
+            quotas = [line.split() for line in quotas]
+        user_data = load_data(quotas, user, run_gpfs_quota_command if live_data else None)
+
+        table = create_table(quotas, show_percentile, user_data)
+        print 'Disk quotas for user %s' % user_data[0]
+        alert_rows = list(table[i] for i in get_alert_rows(user_data))
+        display_table(table, alert_rows)
+    except (IOError, IndexError):
+        print 'No quota information available for user %s' % user
+
+
+if __name__ == '__main__':
+    parser = OptionParser(description="""Provides usage and quota information for home dire
+ctories, DC2, and SDA.
+    For each system, the total usage and quota is listed, and the time the usage was calcul
+ated is given.""")
+    parser.add_option('-u', '--user', help=SUPPRESS_HELP, dest='user')
+    parser.add_option('-f', '--qfile', help=SUPPRESS_HELP, dest='qfile')
+    parser.add_option('-s', '--stored_quota', help="Show stored data for home quota",
+                      dest='live_quota', default=True, action='store_false')
+    parser.add_option('-p', '--percentile', help="Show user placing among all users",
+                      action="store_true", dest='percentile')
+
+    (opts, args) = parser.parse_args()
+    main(user_lookup(opts.user), quota_file(opts.qfile), opts.percentile, opts.live_quota a
+nd not opts.user)
+
+

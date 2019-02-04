@@ -1,0 +1,1000 @@
+    3  exit
+    4  vi openfaileddebugcallback.sh 
+    5  ls -la /gs/
+    6  ls -la /gs/unenc/
+    7  ls -la /gs/unenc/native/
+    8  ls -la /gs/unenc/native/mdtest/
+    9  ls -la /gs/unenc/native/mdtest/#test-dir.0/
+   10  tailf /var/adm/ras/mmfs.log.latest
+   11  mmlsrecoverygroup bldc-dss-0 -L
+   12  mmlsrecoverygroup bldc-dss-1 -L
+   13  mmlsrecoverygroup bldc-dss-2 -L
+   14  mmlsrecoverygroup bldc-dss-3 -L
+   15  mmlsrecoverygroup bldc-dss-4 -L
+   16  mmlsrecoverygroup bldc-dss-5 -L
+   17  mmlsrecoverygroup ictc-dss-0 -L
+   18  mmlsrecoverygroup ictc-dss-1 -L
+   19  mmlsrecoverygroup ictc-dss-2 -L
+   20  mmlsrecoverygroup ictc-dss-3 -L
+   21  mmlsrecoverygroup ictc-dss-4 -L
+   22  mmlsrecoverygroup ictc-dss-5 -L
+   23  mmlsdisk gs
+   24  mmchdisk gs start -a
+   25  mmlsdisk gs
+   26  exit
+   27  rmmod raid_class
+   28  rmmod mpt3sas
+   29  rmmod ses
+   30  rmmod enclosure
+   31  rmmod mpt3sas
+   32  rmmod scsi_transport_sas
+   33  rmmod mpt3sas
+   34  rmmod scsi_transport_sas,mpt3sas
+   35  rmmod scsi_transport_sas mpt3sas
+   36  lsmod |grep mpt3sas
+   37  lsmod raid_class
+   38  lsmod |grep raid_class
+   39  lsmod |grep scsi_transport_sas
+   40  cd /sys/block/sdf/
+   41  ls
+   42  cat removable 
+   43  cd device
+   44  ls
+   45  ls del*
+   46  cat delete
+   47  ls -lrt delete
+   48  cd
+   49  fdisk -l |less
+   50  fdisk -l |grep 10000.8 GB
+   51  fdisk -l |grep 10000.8
+   52  fdisk -l |grep 10000.8 |grep Disk
+   53  fdisk -l |grep 10000.8 |grep Disk |awk '{print $2}'
+   54  fdisk -l |grep 10000.8 |grep Disk |awk '{print $2}' >disks
+   55  vi disks
+   56  multipath -ll |less
+   57  rpm -qa |grep multi
+   58  cd /tmp
+   59  sl
+   60  ls
+   61  ls -lrt
+   62  cd mmfs
+   63  ls
+   64  cd /tmp
+   65  ls
+   66  cd
+   67  ls
+   68  ls -lrt
+   69  view pdisktopop.txt 
+   70  cat disks |while read disk; do  echo 1 > /sys/block/$disk/device/delete; echo $disk; done
+   71  vi disks
+   72  cat disks |while read disk; do  echo 1 > /sys/block/$disk/device/delete; echo $disk; done
+   73  exit
+   74  history |grep fdisk
+   75  exit
+   76  lsmod | grep mlt3sas
+   77  lsmod | grep mpt3sas
+   78  lsmod | grep raid_class
+   79  lsmod | grep scsi_transport_sas
+   80  lsmod | grep ses
+   81  lsmod | grep enclosure
+   82  lsmod| less
+   83  lsmod | grep mpt3sas
+   84  lsmod| less
+   85  pwd
+   86  ls
+   87  mmgetpdisktopology > pdisktopop.txt
+   88  less pdisktopop.txt 
+   89  ls -la /dev/
+   90  mmchpdisk
+   91  ls /sys/class/scsi_device/
+   92  ls
+   93  ll /sys/class/scsi_device/
+   94  ll /sys/devices/
+   95  ll /sys/devices/pci0000\:80/
+   96  mmlsrecoverygroup bldc-dss-0 -L
+   97  mmgetstate -a
+   98  exit
+   99  ls /gs/unenc/native/
+  100  ls /gs/unenc/native/fileWrite/
+  101  tail -f /var/adm/ras/mmfs.log.latest 
+  102  cd /gs/unenc/native/mdtest
+  103  ls
+  104  cd ../mdtest1
+  105  ls
+  106  rm -rf '#test-dir.0'/
+  107  ls -lrt
+  108  cd \#test-dir.0/
+  109  ls
+  110  rm -rf *
+  111  ls -lrt
+  112  ls -lt
+  113  ls
+  114  rm -rf mdtest_tree.0.0/
+  115  rm -rf mdtest_tree.0.1
+  116  rm -rf mdtest_tree.0.2
+  117  rm -rf mdtest_tree.0.3
+  118  rm -rf mdtest_tree.0.4
+  119  rm -rf *
+  120  cd ../
+  121  ls -lrt
+  122  rm -rf '#test-dir.0'/
+  123  ls -lrt
+  124  cd /gs/unenc/native/mdtest
+  125  ls
+  126  ls ../
+  127  cd ../mdtest1/
+  128  cd /tmp/mmfs/
+  129  ls
+  130  ls -lart
+  131  cd /tmp/gpfs.snapOut/
+  132  ls -lart
+  133  cd 40335/
+  134  ls
+  135  cd gather/
+  136  ls
+  137  dmesg 
+  138  dmesg |less
+  139  exit
+  140  mmgetstate -a
+  141  mmlsdisk gd
+  142  mmlsdisk gs
+  143  mmlddisk gs
+  144  mmlsdisk gs
+  145  mmlsmgr
+  146  ls -lart
+  147  cat takemedown 
+  148  cat getdisks 
+  149  mmhealth node show 
+  150  mmhealth node show -N bldc-dss-1
+  151  mmhealth node show -N bldc-dss-2
+  152  mmhealth node show -N bldc-dss-3
+  153  mmhealth node show -N bldc-dss-4
+  154  mmhealth node show -N bldc-dss-5
+  155  mmhealth node show -N ictc-dss-5
+  156  mmhealth node show -N ictc-dss-4
+  157  mmhealth node show -N ictc-dss-3
+  158  mmhealth node show -N ictc-dss-2
+  159  mmhealth node show -N ictc-dss-1
+  160  mmhealth node show -N ictc-dss-0
+  161  mmhealth node show -N ictc-ces-0
+  162  mmhealth node show -N ictc-ces-1
+  163  mmhealth node show -N ictc-ces-2
+  164  mmhealth node show -N ictc-ces-3
+  165  mmhealth node show -N bldc-ces-3
+  166  mmhealth node show -N bldc-ces-2
+  167  mmhealth node show -N bldc-ces-1
+  168  mmhealth node show -N bldc-ces-0
+  169  mmhealth node show -N bldc-dm-0
+  170  mmhealth node show -N bldc-dm-1
+  171  mmhealth node show -N bldc-dm-2
+  172  mmhealth node show -N bldc-tiebreak-quorum
+  173  mmhealth node show -N bldc-tiebreak-quorum-0
+  174  exit
+  175  cat disks 
+  176  exit
+  177  less /var/adm/ras/mmfs.log.latest 
+  178  echo "- - -" > /sys/class/scsi_host/host*/scan
+  179  for i in `ls /sys/class/scsi_host/host*`;do echo "- - -" > /sys/class/scsi_host/$i/scan;done
+  180  ls /sys/class/scsi_host/
+  181  for i in /sys/class/scsi_host/;do echo "- - -" > /sys/class/scsi_host/$i/scan;done
+  182  for i in `ls /sys/class/scsi_host/`;do echo "- - -" > /sys/class/scsi_host/$i/scan;done
+  183  tail -f /var/adm/ras/mmfs.log.latest 
+  184  mmhealth node show -N cesNodes
+  185  mmhealth node show -N dssg
+  186  mmlsfs gs
+  187  mmlsdisk gs
+  188  mmchdisk
+  189  mmchdisk gs start -a
+  190  mmlsdisk gs
+  191  mmhealth node show -N dssg
+  192  mmgetstate -a
+  193  mmstartup -N 2
+  194  mmgetstate -a
+  195  mmhealth node list -N 1
+  196  mmhealth node show -N 1
+  197  mmhealth node show -N 2
+  198  mmhealth node show -N 3
+  199  mmhealth node show -N 4
+  200  mmhealth node show -N 5
+  201  mmhealth node show -N 6
+  202  mmhealth node show -N 7
+  203  mmhealth node show -N 8
+  204  mmhealth node show -N 9
+  205  mmhealth node show -N 10
+  206  mmhealth node show -N 11
+  207  mmhealth node show -N 12
+  208  mmlsrecoverygroup bldc-dss-0 -L
+  209  mmlsrecoverygroup bldc-dss-1 -L
+  210  mmlsrecoverygroup bldc-dss-2 -L
+  211  mmlsrecoverygroup bldc-dss-3 -L
+  212  mmlsrecoverygroup bldc-dss-4 -L
+  213  mmlsrecoverygroup bldc-dss-5 -L
+  214  mmlsrecoverygroup ictc-dss-5 -L
+  215  mmlsrecoverygroup ictc-dss-4 -L
+  216  mmlsrecoverygroup ictc-dss-3 -L
+  217  mmlsrecoverygroup ictc-dss-2 -L
+  218  mmlsrecoverygroup ictc-dss-1 -L
+  219  mmlsrecoverygroup ictc-dss-0 -L
+  220  cat takemedown 
+  221  ls -la
+  222  ls -lart
+  223  cat takemedown 
+  224  ls -lart /tmp/
+  225  less /var/adm/ras/mmfs.log.latest 
+  226  dmesg
+  227  pping dssgadmin
+  228  ls
+  229  cat openfaileddebugcallback.sh 
+  230  mmgetstate
+  231  mmgetstate -a
+  232  cat /var/mmfs/tmp/callback.log 
+  233  mmhealth node show -N bldc-dss-0
+  234  mmhealth node show -N bldc-dss-1
+  235  ls -la /gs/unenc/native
+  236  ls -la /gs/unenc/native/fileWrite/
+  237  ls -lh /gs/unenc/native/fileWrite/
+  238  mmgetstate -a
+  239  exit
+  240  view /var/adm/ras/mmfs.log.latest
+  241  view /var/adm/ras/mmfs.log.previous
+  242  exit
+  243  mmhealth node show
+  244  mmhealth node show -N bldc-dss-1
+  245  mmhealth node show -N bldc-dss-2
+  246  mmhealth node show -N bldc-dss-3
+  247  mmhealth node show -N bldc-dss-4
+  248  mmhealth node show -N bldc-dss-5
+  249  ls -lh /gs/unenc/native/fileWrite/
+  250  mmgetstate 0-a
+  251  mmgetstate -a
+  252  ssh bdss4
+  253  mmgetstate
+  254  mmgetstate -a
+  255  tail -f /var/adm/ras/mmfs.log.latest 
+  256  cd /var/adm/ras
+  257  view mmfs.log.previous
+  258  exit
+  259  mmhealth node show
+  260  mmgetstate -a
+  261  fdisk -l
+  262  exit
+  263  cd /usr/lpp/mmfs/samples/
+  264  ls
+  265  cd ilm/
+  266  ls
+  267  vi mmpolicy-du.sample 
+  268  less mmpolicy-listall.sample 
+  269  pwd
+  270  ssh bces0
+  271  tail -f /var/adm/ras/mmfs.log.latest 
+  272  mmlerecoverygroup bldc-dss-5 -L
+  273  mmlserecoverygroup bldc-dss-5 -L
+  274  mmlsrecoverygroup bldc-dss-5 -L
+  275  mmlsrecoverygroup bldc-dss-4 -L
+  276  mmlsrecoverygroup bldc-dss-3 -L
+  277  mmlsrecoverygroup bldc-dss-2 -L
+  278  mmlsrecoverygroup bldc-dss-1 -L
+  279  mmlsrecoverygroup bldc-dss-0 -L
+  280  mmhealth node show
+  281  mmchdisk gs start -a
+  282  mmgetstate -a
+  283  mmlsdisk gs
+  284  mmhealth node show
+  285  mmhealth node show -N bldc0dss04
+  286  mmhealth node show -N bldc-dss-4
+  287  mmchdisk gs start -a
+  288  mmlsdisk gd
+  289  mmlsdisk gs
+  290  mmhealth node show -N bldc-dss-4
+  291  mmhealth node show -N bldc-dss-4,bldc-dss-5
+  292  mmhealth node show
+  293  mmhealth node show -N 2
+  294  mmhealth node show -N 3
+  295  mmhealth node show -N 4
+  296  mmhealth node show -N 5
+  297  mmhealth node show -N 6
+  298  mmhealth node show -N 7
+  299  mmhealth node show -N 8
+  300  mmhealth node show -N 9
+  301  mmhealth node show -N 10
+  302  mmhealth node show -N 11
+  303  mmhealth node show -N 12
+  304  mmhealth node show -N 13
+  305  mmhealth node show -N 14
+  306  mmhealth node show -N 15
+  307  mmhealth node show -N 16
+  308  mmhealth node show -N 17
+  309  mmhealth node show -N 18
+  310  mmhealth node show -N 19
+  311  mmhealth node show -N 20
+  312  mmhealth node show -N 21
+  313  mmhealth node show -N 22
+  314  mmlscluster
+  315  mmhealth node show -N 43
+  316  mmhealth node show -N 44
+  317  mmhealth node show -N 45
+  318  ls -la /gs/unenc/native
+  319  ls -la /gs/unenc/native/fileWrite/
+  320  ls -la /gs/unenc/native/
+  321  man mmhealth 
+  322  mmhealth cluster show
+  323  mmhealth cluster ?
+  324  mmhealth cluster show DISK
+  325  mmgetstate -a
+  326  exit
+  327  ls /s
+  328  ls /gs/
+  329  ls -la /gs/fileWrite/
+  330  mmhealth node show
+  331  mmhealth node show -N bldc-dss-1
+  332  mmhealth node show -N bldc-dss-2
+  333  mmhealth node show -N bldc-dss-3
+  334  mmhealth node show -N bldc-dss-4
+  335  mmhealth node show -N bldc-dss-5
+  336  mmhealth node show -N ictc-dss-5
+  337  mmhealth node show -N ictc-dss-4
+  338  mmhealth node show -N ictc-dss-3
+  339  mmhealth node show -N ictc-dss-2
+  340  mmhealth node show -N ictc-dss-1
+  341  mmhealth node show -N ictc-dss-0
+  342  mmhealth node show -N ictcces-0
+  343  mmhealth node show -N ictc-ces-0
+  344  mmhealth node show -N ictc-ces-1
+  345  mmhealth node show -N ictc-ces-2
+  346  mmhealth node show -N ictc-ces-3
+  347  mmhealth node show -N bldcc-ces-3
+  348  mmhealth node show -N bldc-ces-3
+  349  mmhealth node show -N bldc-ces-2
+  350  mmhealth node show -N bldc-ces-1
+  351  mmhealth node show -N bldc-ces-
+  352  mmhealth node show -N bldc-ces-0
+  353  mmhealth node show -N bldc-dm-0
+  354  mmhealth node show -N bldc-dm-1
+  355  mmhealth node show -N bldc-dm-2
+  356  mmhealth node show -N bldc-tiebreak-quorum-0
+  357  mmlsdisk gs
+  358  tail -f /var/adm/ras/mmfs.log.latest 
+  359  mmgetstate 0-a
+  360  mmgetstate -a
+  361  mmlsrecoverygroup
+  362  ls /var/log/xcat/
+  363  ls -lart
+  364  cd /var/log/xcat/
+  365  ls -lart
+  366  tail dssg_sashba.log
+  367  lsdef -t osimage
+  368  which ofed_info 
+  369  yum provides /usr/bin/ofed_info
+  370  cat /proc/cmdline 
+  371  cd /opt/lenovo/dss/bin/
+  372  ls
+  373  less dsschfw-lsi 
+  374  cd /opt/lenovo/dss/bin/
+  375  ls
+  376  less dsschfw-baseboard
+  377  tail -f /var/adm/ras/mmfs.log.latest 
+  378  cd /usr/lpp/mmfs/samples/
+  379  ls
+  380  cd ilm/
+  381  ls
+  382  less managedFilelist.sample 
+  383  man mmfind
+  384  man mmfind.README 
+  385  less mmfind.README 
+  386  cp mmfindUtil_processOutputFile.sampleMakefile makefile
+  387  make
+  388  ls -lart
+  389  ls
+  390  rm -f makefile 
+  391  ls
+  392  less mmfind.README 
+  393  man mmapplypolicy
+  394  mmlsrecoverygroup bldc-dss-4 -L
+  395  mmlsrecoverygroup bldc-dss-5 -L
+  396  mmchrecoverygroup
+  397  mmchrecoverygroup bldc-dss-4 --active bldc-dss-4
+  398  vi /tmp/policy.test
+  399  mmapplypolicy 
+  400  man mmapplypolicy
+  401  :q
+  402  less /usr/lpp/mmfs/samples/ilm/mmglobexpf.sample
+  403  man mmapplypolicy
+  404  cat /tmp/policy.test 
+  405  mmapplypolicy gs -I test -P /tmp/policy.test 
+  406  vi /tmp/policy.test
+  407  mmapplypolicy gs -I test -P /tmp/policy.test 
+  408  man mmapplypolicy
+  409  mmapplypolicy gs -P /tmp/policy.test 
+  410  cd /usr/lpp/mmfs/samples/
+  411  cat /tmp/policy.test 
+  412  ls -la 
+  413  ls -la /gs/file
+  414  ls -la /gs/fileWrite/
+  415  ls -la /gs/unenc/native/fileWrite/
+  416  ls
+  417  cd ilm/
+  418  ls
+  419  less mmpolicyExec-list.sample 
+  420  vi /tmp/policy.test 
+  421  man mmapplypolicy
+  422  vi /tmp/policy.test 
+  423  mmapplypolicy gs -P /tmp/policy.test 
+  424  ls mmfind
+  425  cat mmpolicyRules-list.sample
+  426  less mmpolicyRules-list.sample
+  427  vi /tmp/policy.test 
+  428  mmapplypolicy gs -P /tmp/policy.test 
+  429  ls -lart
+  430  cd /tmp/
+  431  ls
+  432  ls -lart
+  433  vi /tmp/policy.test 
+  434  mmapplypolicy gs -P /tmp/policy.test -P /tmp/
+  435  mmapplypolicy gs -P /tmp/policy.test -f /tmp/
+  436  ls -lart /tmp/
+  437  mmapplypolicy gs -P /tmp/policy.test -I defer
+  438  ls
+  439  ls -la
+  440  ls -lart
+  441  cat mmapplypolicy.18182.5DB98728.list.all-files 
+  442  cd /usr/lpp/mmfs/samples/ilm/
+  443  grep LIMIT *
+  444  less mmpolicyRules-management.sample
+  445  vi /tmp/policy.test 
+  446  mmapplypolicy gs -P /tmp/policy.test -I defer
+  447  cat /tmp/policy.test 
+  448  ls -lart
+  449  cd /tmp/
+  450  ls
+  451  ls -lart
+  452  head -10 mmapplypolicy.18182.5DB98728.list.all-files
+  453  less mmapplypolicy.18182.5DB98728.list.all-files 
+  454  man split
+  455  man shuf
+  456  yum provides `which shuf`
+  457  mmhealth node show -N 1
+  458  mmhealth node show -N 2
+  459  mmhealth node show -N 3
+  460  mmhealth node show -N 4
+  461  mmhealth node show -N 5
+  462  mmhealth node show -N 6
+  463  mmhealth node show -N 7
+  464  mmhealth node show -N 8
+  465  mmhealth node show -N 9
+  466  mmhealth node show -N 10
+  467  mmhealth node show -N 11
+  468  mmhealth node show -N 12
+  469  mmhealth node show -N 13
+  470  mmhealth node show -N 14
+  471  mmhealth node show -N 15
+  472  mmhealth node show -N 16
+  473  mmhealth node show -N 17
+  474  mmhealth node show -N 18
+  475  mmhealth node show -N 19
+  476  mmhealth node show -N 20
+  477  mmhealth node show -N 21
+  478  mmhealth node show -N 22
+  479  mmhealth node show -N 43
+  480  mmhealth node show -N 44
+  481  mmhealth node show -N 45
+  482  mmhealth node show -N 46
+  483  mmhealth node show -N 42
+  484  mmlscluster
+  485  mmlsdisk gs
+  486  mmces service list
+  487  exit
+  488  df -h
+  489  ibstat
+  490  mmauth show all
+  491  mmremote show all
+  492  mmremotecluster show all
+  493  mmremotefs show all
+  494  cd /var/adm/etc
+  495  ls
+  496  cd /var/mmfs/etc
+  497  ls
+  498  mmlsremote
+  499  mmremotecluster show
+  500  cd
+  501  ls -lrt
+  502  history |grep mmauth
+  503  mmauth show all
+  504  cd /tmp
+  505  ls
+  506  cd /var/mmfs
+  507  find . -name "id_rsa.pub"
+  508  cd ssl
+  509  ls
+  510  pwd
+  511  ls -lrt
+  512  cd 
+  513  vi g1.id_rsa.pub
+  514  cd -
+  515  cat id_rsa_committed.
+  516  cat id_rsa_committed.pub
+  517  cd
+  518  ls -lrt
+  519  mv g1.id_rsa.pub GSB.gsb0_id_rsa.pub
+  520  ls -lrt
+  521  ping 10.5.1.10
+  522  ping 10.5.1.11
+  523  ping 10.5.1.12
+  524  ping 10.5.1.13
+  525  ping 10.5.1.14
+  526  ping 10.5.1.15
+  527  ping 10.5.1.16
+  528  ping 10.5.1.17
+  529  df -h
+  530  exit
+  531  ls -lrt
+  532  mmlsconfig all |grep -i nist
+  533  mmchconfig nistCompliance=off
+  534  cat GSB.gsb0_id_rsa.pub 
+  535  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n 10.5.1.10
+  536  10.5.1.11
+  537  10.5.1.12
+  538  10.5.1.13
+  539  10.5.1.14
+  540  10.5.1.15
+  541  10.5.1.16
+  542  10.5.1.17
+  543  10.4.1.10
+  544  10.4.1.11
+  545  10.4.1.12
+  546  10.4.1.13
+  547  10.4.1.14
+  548  10.4.1.15
+  549  10.4.1.16
+  550  nslookup 10.5.1.10
+  551  man mmremotecluster
+  552  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n 10.5.1.10,10.5.1.11,10.5.1.12,10.5.1.13,10.5.1.14,10.5.1.15,10.5.1.16,10.5.1.17,10.4.1.10,10.4.1.11,10.4.1.12,10.4.1.13,10.4.1.14,10.4.1.15,10.4.1.15,10.4.1.16,10.4.1.17
+  553  ip a
+  554  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n 10.5.1.10
+  555  ping 10.5.1.10
+  556  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n10.5.1.10
+  557  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n 10.5.1.11
+  558  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n 10.5.1.12
+  559  cat /etc/hosts
+  560  host bdss1
+  561  exit
+  562  mmremotecluster add GSB.gsb0 -n 10.5.1.10,10.5.1.11,10.5.1.12,10.5.1.13,10.5.1.14,10.5.1.15,10.5.1.16,10.5.1.17,10.4.1.10,10.4.1.11,10.4.1.12,10.4.1.13,10.4.1.14,10.4.1.15,10.4.1.15,10.4.1.16,10.4.1.17 -k GSB.gsb0_id_rsa.pub
+  563  exit
+  564  ping 156.56.18.68
+  565  route
+  566  man route
+  567  exit
+  568  mmdiag --network
+  569  exit
+  570  df
+  571  ssh dm-0
+  572  ssh dm0
+  573  ssh bdm0
+  574  history mmremote
+  575  history |grep mmremote
+  576  set -o vi
+  577  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n g1nsd1,g1nsd2,g2nsd3,g1nsd4,g1nsd5,g1nsd6,g1nsd7,g1nsd8,g1nsd11,g1nsd12,g1nsd13,g1nsd14,n1nsd15,g1nsd16,g1nsd17,g1nsd18
+  578  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n g1nsd1,g1nsd2,g1nsd3,g1nsd4,g1nsd5,g1nsd6,g1nsd7,g1nsd8,g1nsd11,g1nsd12,g1nsd13,g1nsd14,n1nsd15,g1nsd16,g1nsd17,g1nsd18
+  579  mmremotecluster add GSB.gsb0 -k GSB.gsb0_id_rsa.pub -n g1nsd1,g1nsd2,g1nsd3,g1nsd4,g1nsd5,g1nsd6,g1nsd7,g1nsd8,g1nsd11,g1nsd12,g1nsd13,g1nsd14,g1nsd15,g1nsd16,g1nsd17,g1nsd18
+  580  df -h
+  581  mmremotefs add gsd -f gs1 -C GSB.gsb0 -T /gs1
+  582  mmremotecluster show
+  583  mmmount gs1
+  584  df -h
+  585  mmmount gs1
+  586  cd /gs1
+  587  ls
+  588  cd /
+  589  mmmount all
+  590  df -h
+  591  cd /var/adm/ras
+  592  view mmfs.log.latest
+  593  mmremotefs delete gsd
+  594  mmremotefs add GSD -f gs1 -C GSB.gsb0 -T /gs1
+  595  mmmount all
+  596  mmremotefs show
+  597  mmremotefs delete GSD
+  598  mmremotefs add gs1 -f GSD -C GSB.gsb0 -T /gs1
+  599  mmremotefs show
+  600  mmmount all
+  601  df -h
+  602  mmdiag --network
+  603  history |tail -n 100
+  604  mmremotefs show
+  605  view /var/adm/ras/mmfs.log.latest
+  606  mmmount all
+  607  view /var/adm/ras/mmfs.log.latest
+  608  route
+  609  ping g1tie
+  610  ping 10.5.1.10
+  611  ping 10.5.1.14
+  612  ping 10.5.1.17
+  613  ping 10.5.1.18
+  614  exit
+  615  mmlsrecoverygroup 
+  616  mmchrecoverygroup bldc-dss-0 --active bldc-dss-1
+  617  mmshutdown
+  618  mmshutdown -t 10
+  619  mmstartup
+  620  mmgetstate
+  621  mmlsrecoverygroup bldc-dss-0 -L
+  622  mmchrecoverygroup bldc-dss-0 --active bldc-dss-0
+  623  mmlsrecoverygroup bldc-dss-0 -L
+  624  df -h
+  625  mmmount all
+  626  df -h
+  627  exit
+  628  mmlsrecoverygroup bldc-dss-4 -L
+  629  mmlsrecoverygroup bldc-dss-5 -L
+  630  mmhealth cluster show DISK
+  631  less /var/adm/ras/mmfs.log.latest 
+  632  cd /var/log/xcat/
+  633  ls
+  634  ls -la
+  635  ssh bces0
+  636  mmlsmount gs -L
+  637  man topsummary
+  638  less /var/adm/ras/mmfs.log.latest 
+  639  man mmchfileset
+  640  jb
+  641  jobs
+  642  man mmchfileset
+  643  set -o vi
+  644  man mmdiag
+  645  mmdiag --afm
+  646  man mmdiag
+  647  mmlsenclosure -h
+  648  mmlsenclosure all
+  649  mmlsenclosure J11L3AR -L
+  650  cd /usr/lpp/mmfs/bin/
+  651  ls *enclosure*
+  652  ls *log*
+  653  man mmlogmsg
+  654  mmlogmsg -h
+  655  mmlogmsg 
+  656  ls -la mmlogmsg 
+  657  file mmlogmsg
+  658  cd /opt/lenovo/dss/bin/
+  659  ld
+  660  ls
+  661  ls *log*
+  662  ls *enclosure*
+  663  dssglsenclosure -h
+  664  grep dssglsenclosure *
+  665  lvm lvs
+  666  ls /etc/fstab 
+  667  cat /etc/fstab
+  668  mmlsrecoverygroup
+  669  man mmlsrecovery
+  670  set -o vi
+  671  man mmlsrecoverygroup
+  672  mmlsrecoverygroup -L
+  673  mmlsrecoverygroup bldc-dss-0 -L
+  674  mmlsrecoverygroup bldc-dss-0 -L | tee /tmp/ls-recovery-group.log
+  675  less /tmp/ls-recovery-group.log
+  676  man mmlsrecoverygroup
+  677  mmhealth -h
+  678  mmhealth node show DISK -N all | tee /tmp/bef1
+  679  vim /tmp/bef1 
+  680  man mmhealth
+  681  mmhealth node show --unhealthy
+  682  zsh
+  683  cd $(dirname $(which mmdiag))
+  684  pwd
+  685  ls
+  686  vim mmchfs
+  687  ls
+  688  ls *heal*
+  689  ls *hos*
+  690  ls *fail*
+  691  man gnrhealthcheck
+  692  man mmgetpdisktopology
+  693  mmgetpdisktopology
+  694  man topsummary
+  695  mmgetpdisktopology | tee /tmp/topo-chico
+  696  cat /tmp/topo-chico | topsummary
+  697  cat /tmp/topo-chico | topsummary topology
+  698  topsummary /tmp/topo-chico
+  699  topsummary /tmp/topo-chico | less -i
+  700  mmlsrecoverygroup 
+  701  mmlsrecoverygroup  -L bldc-dss-0 | less -i
+  702  mmlsrecoverygroup bldc-dss-0 -L | less -i
+  703  pwd
+  704  ls
+  705  history | grep ces
+  706  mmces node list
+  707  mmces
+  708  man mmces
+  709  mmfsadm dump config
+  710  mmfsadm dump config | less -i
+  711  mmfsadm dump config | grep -i ces
+  712  mmfsadm dump config | grep -i ces | less
+  713  mmfsadm dump threads | less -i
+  714  mmces
+  715  mmces node list
+  716  man mmces
+  717  mmlsnsd | grep bldc-ces-0
+  718  mmlsnsd k| grep bldc-ces-0
+  719  mmlsnsd
+  720  mmlsnsd k| grep bldc-ces-0
+  721  mmlsnsd | grep bldc-ces-0
+  722  man mmces
+  723  mmces address list
+  724  man mmces
+  725  mmces service list
+  726  mmces address list
+  727  mmces service list -N ictc-ces-0.indy.geode.iu.edu,ictc-ces-3
+  728  mmces service list
+  729  mmces node list 
+  730  mmces node list | grep ces | awk '{print $2}' | tr '\n' ',' ; echo
+  731  mmces service list -N bldc-ces-0.bloom.geode.iu.edu,bldc-ces-1.bloom.geode.iu.edu,bldc-ces-2.bloom.geode.iu.edu,bldc-ces-3.bloom.geode.iu.edu,ictc-ces-0.indy.geode.iu.edu,ictc-ces-1.indy.geode.iu.edu,ictc-ces-2.indy.geode.iu.edu,ictc-ces-3.indy.geode.iu.edu
+  732  echo bldc-ces-0.bloom.geode.iu.edu,bldc-ces-1.bloom.geode.iu.edu,bldc-ces-2.bloom.geode.iu.edu,bldc-ces-3.bloom.geode.iu.edu,ictc-ces-0.indy.geode.iu.edu,ictc-ces-1.indy.geode.iu.edu,ictc-ces-2.indy.geode.iu.edu,ictc-ces-3.indy.geode.iu.edu | sed -e 's/.indy.geode.iu.edu//' -e 's/.bloom.geode.iu.edu//'
+  733  echo bldc-ces-0.bloom.geode.iu.edu,bldc-ces-1.bloom.geode.iu.edu,bldc-ces-2.bloom.geode.iu.edu,bldc-ces-3.bloom.geode.iu.edu,ictc-ces-0.indy.geode.iu.edu,ictc-ces-1.indy.geode.iu.edu,ictc-ces-2.indy.geode.iu.edu,ictc-ces-3.indy.geode.iu.edu | sed -e 's/.indy.geode.iu.edu//' -e 's/.bloom.geode.iu.edu//g'
+  734  echo bldc-ces-0.bloom.geode.iu.edu,bldc-ces-1.bloom.geode.iu.edu,bldc-ces-2.bloom.geode.iu.edu,bldc-ces-3.bloom.geode.iu.edu,ictc-ces-0.indy.geode.iu.edu,ictc-ces-1.indy.geode.iu.edu,ictc-ces-2.indy.geode.iu.edu,ictc-ces-3.indy.geode.iu.edu | sed -e 's/.indy.geode.iu.edu//g' -e 's/.bloom.geode.iu.edu//g'
+  735  mmces service list -N bldc-ces-0,bldc-ces-1,bldc-ces-2,bldc-ces-3,ictc-ces-0,ictc-ces-1,ictc-ces-2,ictc-ces-3
+  736  mmces
+  737  mmces state
+  738  mmces state show SMB -N ces
+  739  mmces address list
+  740  mmces address
+  741  mmces address move
+  742  mmces address move --ces-ip 149.165.232.15 --ces-node bldc-ces-3 
+  743  mmces address list
+  744  host bldc-ces-1.bloom.geode.iu.edu
+  745  mmces address list
+  746  man mmces
+  747  mmces address policy
+  748  mmces show address policy 
+  749  mmces
+  750  mmlscluster 
+  751  mmces address
+  752  mmces address list
+  753  mmces address policy
+  754  mmces address policy even-coverage
+  755  mmces address policy
+  756  mmces address list
+  757  mmfsadm dump config | grep even-coverage
+  758  mmfsadm dump cesconfig
+  759  man mmces
+  760  mmlsconfig
+  761  mmlsconfig | less
+  762  ls /geode/gs_util/cesroot
+  763  ls /geode/gs_util/cesroot/
+  764  ls /geode/gs_util/cesroot/ces/
+  765  ls /geode/gs_util/cesroot/ces/addrs/
+  766  ls /geode/gs_util/cesroot/ces/addrs/1548268125-node17-149.165.232.15 
+  767  ls -l /geode/gs_util/cesroot/ces/addrs/1548268125-node17-149.165.232.15 
+  768  host 149.165.232.15
+  769  pwd
+  770  fg
+  771  man mmchconfig
+  772  mmlsconfig
+  773  mmlsconfig | grep -i admin
+  774  mmces address list
+  775  mmces address move --ces-ip 149.165.232.25 --ces-node ictc-ces-3
+  776  mmces address list
+  777  mmces node list
+  778  mmces address list
+  779  mmces
+  780  mmces state
+  781  mmces state show CES
+  782  mmces state show CES -N ces
+  783  mmces address move 
+  784  mmces address move --rebalance
+  785  mmces address list
+  786  mmces state show CES -N ces
+  787  man mmces
+  788  host 149.165.232.25
+  789  host bldc-ces-2
+  790  bldc-ces-2.external.geode.iu.edu.
+  791  host bldc-ces-2.external.geode.iu.edu.
+  792  host geode2.uits.iu.edu
+  793  for ip in $(host geode2.uits.iu.edu | awk '{print $NF}'); do   host $ip; done
+  794  ssh bldc-ces-3.external.geode.iu.edu
+  795  ssh bldc-ces-1.external.geode.iu.edu
+  796  nodels bldc-ces-1
+  797  ssh bldc-ces-1
+  798  mmces address list
+  799  mmces
+  800  mmces service
+  801  mmces service list
+  802  mmces service list -n CES
+  803  mmces service list -n ces
+  804  mmces service list -N ces
+  805  man mmces
+  806  mmces state list
+  807  man mmces
+  808  mmces events list
+  809  mmces events list -N CES
+  810  mmces events list -N CES | grep 2019-01-23
+  811  man mmces
+  812  mmces state cluster SMB
+  813  mmces state cluster SMB -N ces
+  814  mmces state cluster SMB -N CES
+  815  mmces state cluster SMB -N ces
+  816  man mmces
+  817  mmces state show NETWORK -a
+  818  cd $(dirname $(which mmdiag))
+  819  ls
+  820  ls *recov*
+  821  mmlsrecoverygroup
+  822  topsummary /tmp/topo-chico | less -i
+  823  ls *vdisk*
+  824  mmlsvdisk 
+  825  mmlsvdisk  | grep -v log
+  826  mmces
+  827  mmnfs export list
+  828  mmnfs export list -N ces
+  829  ls
+  830  mmsmb export list -N ces
+  831  history 
+  832  mmsmb export list -N ces
+  833  mmsmb
+  834  mmsmb export
+  835  mmsmb exportacl
+  836  mmsmb exportacl getid
+  837  mmsmb export list -a
+  838  mmsmb export add
+  839  man mmsmb
+  840  mmsmb export list -a
+  841  #mmsmb export add SMBExport /geode/unenc/
+  842  ls /geode/
+  843  ls /geode/gs_util/
+  844  mkdir /geode/bef-test
+  845  mmsmb export add SMBExport /geode/bef-test
+  846  ls -ld /geode/bef-test/
+  847  ls /geode/
+  848  ls /geode/gs_util/
+  849  mmsmb export list -a
+  850  ls /geode/unenc/smb
+  851  mm
+  852  mmgetstate -a
+  853  df /geode/
+  854  df /geode/gs_util/
+  855  mount | grep gpfs
+  856  cd /geode/
+  857  ls
+  858  rmdir bef-test/
+  859  ls
+  860  find gs_util/
+  861  ls -l gs_util/
+  862  ls -l gs_util/cesroot/
+  863  ls -l gs_util/cesroot/ces/
+  864  mont
+  865  mount
+  866  mmlsfs 
+  867  mmlsfs all
+  868  mmlsfs all | grep Files
+  869  mmlsfs all | grep File
+  870  cat /etc/fstab 
+  871  mount /geode/
+  872  ls /geode/
+  873  ls /geode/gs_util/
+  874  find /geode/gs_util/
+  875  pwd
+  876  cd
+  877  umount /geode/
+  878  ls
+  879  find /geode/
+  880  mv -i /geode/gs_util /tmp/
+  881  #mmces address move --ces-ip 149.165.232.25 --ces-node ictc-ces-3
+  882  mmces address list
+  883  mmces address move --ces-ip 149.165.232.25 --ces-node ictc-ces-3
+  884  find /geode/
+  885  mv -i /geode/gs_util /tmp/
+  886  mv -i /geode/gs_util /tmp/gs_util2
+  887  which mmces
+  888  cd /usr/lpp/mmfs/bin/
+  889  cp mmces mmces.orig
+  890  vim mmces
+  891  rm mmces.orig 
+  892  ssh bldc-cds-0
+  893  ssh bldc-ces-0
+  894  find /geode/
+  895  ssh bldc-ces-0
+  896  cd
+  897  cd -
+  898  ls *disk*
+  899  ls *gss*
+  900  ls
+  901  rpm -qa | grep gss
+  902  rpm -ql gpfs.gss.pmcollector
+  903  rpm -ql gpfs.gss.pmcollector | less
+  904  mmlscomp
+  905  mmlscomp | less
+  906  ls
+  907  grep -i hospital *
+  908  grep -i decodePdiskState *
+  909  man mmlsvdisk
+  910  man mmlsrecoverygroupevents
+  911  man mmlspdisk
+  912  mmlspdisk --not-ok
+  913  man mmlspdisk
+  914  mmlspdisk all --not-ok
+  915  man mmlspdisk
+  916  mmlspdisk all --replace
+  917  man mmchpdisk 
+  918  mmlspdisk all --replace
+  919  man mmchpdisk 
+  920  # mmchpdisk ictc-dss-1 e1d2s42
+  921  man mmchpdisk 
+  922  # mmchpdisk ictc-dss-1 --pdisk e1d2s42
+  923  man mmchpdisk 
+  924  mmchpdisk ictc-dss-1 --pdisk e1d2s42 ‐‐identify on
+  925  mmlspdisk all --replace
+  926  mmchpdisk ictc-dss-1 --pdisk e1d2s42 ‐‐identify on
+  927  man mmchpdisk
+  928  mmchpdisk ictc-dss-1 --pdisk e1d2s42 ‐‐identify
+  929  mmchpdisk ictc-dss-1 --pdisk e1d2s42 ‐‐identify on
+  930  mmchpdisk ictc-dss-1 --pdisk e1d2s42 ‐‐identify=on
+  931  mmchpdisk ictc-dss-1 --pdisk e1d2s42 
+  932  mmchpdisk ictc-dss-1 --pdisk e1d2s42 --diagnose
+  933  mmlspdisk all --replace
+  934  mmlspdisk ictc-dss-1 --pdisk e1d2s42
+  935  mmchpdisk ictc-dss-1 --pdisk e1d2s42 
+  936  mmlsmgr 
+  937  mmlscluster 
+  938  mmchmgr 
+  939  mmchmgr geode bldc-dss-1.bloom
+  940  mmchmgr geode bldc-dss-1
+  941  mmlsmgr 
+  942  mmchmgr -c bldc-dss-2
+  943  mmlscluster 
+  944  mmlscluster  | grep quorum
+  945  mmchmgr -c bldc-dss-3
+  946  man mmchcluster
+  947  r
+  948  man mmchnode
+  949  mmchmgr geode ictc-dss-4
+  950  mmlsmgr 
+  951  mmshutdown -N ictc-dss-4
+  952  mmlscluster  | grep quorum
+  953  mmlscluster  | grep manager
+  954  mmstartup -N ictc-dss-4
+  955  man mmchnode
+  956  sysctl status mmfsd
+  957  sysctl status gpfs
+  958  sysctl status gpfsd
+  959  ls /etc/init.d/
+  960  find /etc/systemd/ | grep -i mm
+  961  find /etc/systemd/ 
+  962  find /etc/systemd/  | less
+  963  systemctl status gpfs
+  964  man mmchmgr
+  965  mmlsconfig | less
+  966  cd $(dirname $(which mmdiag))
+  967  ls *mon*
+  968  man mmsysmoncontrol
+  969  man mmcesmonitor
+  970  mmcesmonitor -h
+  971  mmcesmonitor 
+  972  man mmcesmonitor 
+  973  vim mmcesmonitor 
+  974  mmlscallback 
+  975  mmlscallback  | less -i
+  976  man mmlscallback
+  977  man mmaddcallback
+  978  mmslmgr
+  979  mmlsmgr 
+  980  watch mmlsmgr 
+  981  cd /var/adm/ras/
+  982  ls
+  983  cd ..
+  984  ls
+  985  cd ..
+  986  ls
+  987  cd mmfs/gen/
+  988  ls
+  989  view mmsdrfs 
+  990  mmlsconfig 
+  991  mmlsconfig  > /tmp/bef.config
+  992  vim /tmp/bef.config 
+  993  man mmchconfig
+  994  mmlscluster
+  995  mmlsnsd 
+  996  history
+  997  pwd
+  998  ls
+  999  ls 
+ 1000  df
+ 1001  ls /tmp
+ 1002  history>/tmp/g2

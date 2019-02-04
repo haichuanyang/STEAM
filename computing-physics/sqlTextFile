@@ -1,0 +1,501 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE global_var
+(
+  schemaVersion INTEGER DEFAULT 0
+);
+INSERT INTO "global_var" VALUES(1400);
+CREATE TABLE cm_CompType
+(
+  symbol TEXT NOT NULL PRIMARY KEY
+);
+INSERT INTO "cm_CompType" VALUES('rack');
+INSERT INTO "cm_CompType" VALUES('server');
+INSERT INTO "cm_CompType" VALUES('storageEnclosure');
+INSERT INTO "cm_CompType" VALUES('storageServer');
+CREATE TABLE cm_CompSpec
+(
+  compType TEXT NOT NULL REFERENCES cm_CompType (symbol),
+  partNumber TEXT COLLATE nocase NOT NULL PRIMARY KEY,
+  height INTEGER,
+  description TEXT,
+
+  /* Disallow colon characters. */
+  CHECK (partNumber NOT LIKE '%:%'),
+  CHECK (description NOT LIKE '%:%')
+);
+INSERT INTO "cm_CompSpec" VALUES('rack','RACK42U',42,'Generic 42U rack');
+INSERT INTO "cm_CompSpec" VALUES('rack','9308RC4',42,'IBM 42U Enterprise Rack');
+INSERT INTO "cm_CompSpec" VALUES('rack','1410HPA',42,'IBM Intelligent Cluster 42U 1200mm Deep Primary Rack');
+INSERT INTO "cm_CompSpec" VALUES('rack','1410HEA',42,'IBM Intelligent Cluster 42U 1200mm Deep Expansion Rack');
+INSERT INTO "cm_CompSpec" VALUES('server','SERVER2U',2,'Generic 2U rackable server');
+INSERT INTO "cm_CompSpec" VALUES('server','7915AC1',2,'IBM System x3650 M4');
+INSERT INTO "cm_CompSpec" VALUES('server','7915FT2',2,'IBM System x3650 M4');
+INSERT INTO "cm_CompSpec" VALUES('server','5460AC1',2,'IBM System x3650 M4 HD Ultimate');
+INSERT INTO "cm_CompSpec" VALUES('server','5460FT1',2,'IBM System x3650 M4 HD Ultimate');
+INSERT INTO "cm_CompSpec" VALUES('server','8247-22L',2,'IBM POWER8 System 8247-22L');
+INSERT INTO "cm_CompSpec" VALUES('server','8284-22A',2,'IBM POWER8 System 8284-22A');
+INSERT INTO "cm_CompSpec" VALUES('server','8247-21L',2,'IBM POWER8 System 8247-21L');
+INSERT INTO "cm_CompSpec" VALUES('server','8247-42L',4,'IBM POWER8 System 8247-42L');
+INSERT INTO "cm_CompSpec" VALUES('server','8286-42A',4,'IBM POWER8 System 8286-42A');
+INSERT INTO "cm_CompSpec" VALUES('server','5148-21L',2,'IBM POWER8 System 5148-21L');
+INSERT INTO "cm_CompSpec" VALUES('server','5148-22L',2,'IBM POWER8 System 5148-22L');
+INSERT INTO "cm_CompSpec" VALUES('server','5462AC1',2,'Lenovo System x3650 M5');
+INSERT INTO "cm_CompSpec" VALUES('server','5462FT1',2,'Lenovo System x3650 M5');
+INSERT INTO "cm_CompSpec" VALUES('server','7377AC1',2,'Lenovo M3?');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','1818-80E',4,'IBM DCS3700 Expansion Enclosure');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','0796011',4,'IBM GPFS Storage Server enclosure with 2TB HDDs');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','0796012',4,'IBM GPFS Storage Server enclosure with 2TB HDDs and 200GB SSDs');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','0796013',4,'IBM GPFS Storage Server enclosure with 3TB HDDs');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','0796014',4,'IBM GPFS Storage Server enclosure with 3TB HDDs and 200GB SSDs');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','DE6600',4,'NetApp DE6600 Expansion Enclosure');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','1746E4A',2,'IBM EXP3524 Express Storage Expansion Unit');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','DE5600',2,'NetApp DE5600 Expansion Enclosure');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','FC5887',2,'IBM Power Systems EXP24S I/O Drawer (FC 5887)');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GSS21S',NULL,'GPFS Storage Server 21S');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GSS22S',NULL,'GPFS Storage Server 22S');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GSS24S',NULL,'GPFS Storage Server 24S');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GSS26S',NULL,'GPFS Storage Server 26S');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GSS24',NULL,'GPFS Storage Server 24');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GSS26',NULL,'GPFS Storage Server 26');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GS1',NULL,'GPFS Storage Server GS1');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GS2',NULL,'GPFS Storage Server GS2');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GS4',NULL,'GPFS Storage Server GS4');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GS6',NULL,'GPFS Storage Server GS6');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GL2',NULL,'GPFS Storage Server GL2');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GL4',NULL,'GPFS Storage Server GL4');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','GL6',NULL,'GPFS Storage Server GL6');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G201',NULL,'Lenovo Distributed Storage Solution G201');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G202',NULL,'Lenovo Distributed Storage Solution G202');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G203',NULL,'Lenovo Distributed Storage Solution G203');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G204',NULL,'Lenovo Distributed Storage Solution G204');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G205',NULL,'Lenovo Distributed Storage Solution G205');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G206',NULL,'Lenovo Distributed Storage Solution G206');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G210',NULL,'Lenovo Distributed Storage Solution G210');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G220',14,'Lenovo Distributed Storage Solution G220');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G230',NULL,'Lenovo Distributed Storage Solution G230');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G240',NULL,'Lenovo Distributed Storage Solution G240');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G250',NULL,'Lenovo Distributed Storage Solution G250');
+INSERT INTO "cm_CompSpec" VALUES('storageServer','DSS-G260',NULL,'Lenovo Distributed Storage Solution G260');
+INSERT INTO "cm_CompSpec" VALUES('rack','1410HPB',42,'Intelligent Cluster 42U 1100mm Deep Primary Rack');
+INSERT INTO "cm_CompSpec" VALUES('rack','1410HEB',42,'Intelligent Cluster 42U 1100mm Deep Expansion Rack');
+INSERT INTO "cm_CompSpec" VALUES('server','8871AC3',2,'Lenovo System x3650 M5');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','6413HC1',5,'LENOVO D3284 5U Expansion Enclosure');
+INSERT INTO "cm_CompSpec" VALUES('storageEnclosure','4587HC2',2,'LENOVO D1224 2U Expansion Enclosure');
+INSERT INTO "cm_CompSpec" VALUES('server','8869AC1',1,'Lenovo System x3550 M5');
+CREATE TABLE cm_RackSpecExtra
+(
+  partNumber TEXT COLLATE nocase PRIMARY KEY REFERENCES cm_CompSpec (partNumber) ON DELETE CASCADE
+);
+INSERT INTO "cm_RackSpecExtra" VALUES('1410HEA');
+INSERT INTO "cm_RackSpecExtra" VALUES('1410HEB');
+INSERT INTO "cm_RackSpecExtra" VALUES('1410HPA');
+INSERT INTO "cm_RackSpecExtra" VALUES('1410HPB');
+INSERT INTO "cm_RackSpecExtra" VALUES('9308RC4');
+INSERT INTO "cm_RackSpecExtra" VALUES('RACK42U');
+CREATE TABLE cm_ServerSpecExtra
+(
+  partNumber TEXT COLLATE nocase PRIMARY KEY REFERENCES cm_CompSpec (partNumber) ON DELETE CASCADE
+);
+INSERT INTO "cm_ServerSpecExtra" VALUES('5148-21L');
+INSERT INTO "cm_ServerSpecExtra" VALUES('5148-22L');
+INSERT INTO "cm_ServerSpecExtra" VALUES('5460AC1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('5460FT1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('5462AC1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('5462FT1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('7377AC1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('7915AC1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('7915FT2');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8247-21L');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8247-22L');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8247-42L');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8284-22A');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8286-42A');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8869AC1');
+INSERT INTO "cm_ServerSpecExtra" VALUES('8871AC3');
+INSERT INTO "cm_ServerSpecExtra" VALUES('SERVER2U');
+CREATE TABLE cm_StorageEnclosureSpecExtra
+(
+  partNumber TEXT COLLATE nocase PRIMARY KEY REFERENCES cm_CompSpec (partNumber) ON DELETE CASCADE,
+  vendorId TEXT,
+  productId TEXT,
+  driveSlots INTEGER,
+  hasDisplayId INTEGER DEFAULT 0, family TEXT,
+
+  /* Disallow colon characters. */
+  CHECK (vendorId NOT LIKE '%:%'),
+  CHECK (productId NOT LIKE '%:%')
+);
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('1818-80E','IBM','DCS3700',60,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('0796011','IBM','0796-011',60,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('0796012','IBM','0796-012',60,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('0796013','IBM','0796-013',60,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('0796014','IBM','0796-014',60,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('DE6600','LSI','DE6600-SAS',60,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('1746E4A','IBM-ESXS','EXP3524',24,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('DE5600','LSI','DE5600-SAS',24,1,'3700');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('FC5887','IBM','5887',24,0,'5887');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('6413HC1','LENOVO','5U84ENC5U12GESM',84,0,'D3284');
+INSERT INTO "cm_StorageEnclosureSpecExtra" VALUES('4587HC2','LENOVO','2U24ENCJ12ESM3P',24,0,'D1224');
+CREATE TABLE cm_Comp
+(
+  compId INTEGER PRIMARY KEY,
+  compType TEXT NOT NULL,
+  partNumber TEXT COLLATE nocase NOT NULL REFERENCES cm_CompSpec (partNumber),
+  serialNumber TEXT COLLATE nocase UNIQUE,
+  name TEXT COLLATE nocase UNIQUE,
+
+  /* Disallow simple integer name so they are distict from a compId. */
+  CHECK (cast (name AS INTEGER) != name),
+
+  /* Disallow colon character. */
+  CHECK (serialNumber NOT LIKE '%:%'),
+  CHECK (name NOT LIKE '%:%')
+);
+INSERT INTO "cm_Comp" VALUES(1,'rack','1410HPB','J11L7Z4','BLDC-A1');
+INSERT INTO "cm_Comp" VALUES(2,'storageEnclosure','6413HC1','J11L3AR','6413HC1-J11L3AR');
+INSERT INTO "cm_Comp" VALUES(3,'storageEnclosure','6413HC1','J11L3AT','6413HC1-J11L3AT');
+INSERT INTO "cm_Comp" VALUES(4,'server','8871AC3','J11L361','bldc-dss-0');
+INSERT INTO "cm_Comp" VALUES(5,'server','8871AC3','J11L362','bldc-dss-1');
+INSERT INTO "cm_Comp" VALUES(6,'rack','1410HPB','J11L7Z5','BLDC-A2');
+INSERT INTO "cm_Comp" VALUES(7,'server','8869AC1','J11L3B8','bldc-ces-0');
+INSERT INTO "cm_Comp" VALUES(8,'server','8869AC1','J11L3B9','bldc-ces-1');
+INSERT INTO "cm_Comp" VALUES(9,'server','8869AC1','J11L3BA','bldc-ces-2');
+INSERT INTO "cm_Comp" VALUES(10,'server','8869AC1','J11L3BB','bldc-ces-3');
+INSERT INTO "cm_Comp" VALUES(11,'server','8869AC1','J11L3B3','bldc-isklm-0');
+INSERT INTO "cm_Comp" VALUES(12,'server','8869AC1','J11L3B4','bldc-isklm-1');
+INSERT INTO "cm_Comp" VALUES(13,'server','8869AC1','J11L3B5','bldc-isklm-2');
+INSERT INTO "cm_Comp" VALUES(14,'server','8869AC1','J11NW68','bldc-dm-0');
+INSERT INTO "cm_Comp" VALUES(15,'server','8869AC1','J11NW67','bldc-dm-1');
+INSERT INTO "cm_Comp" VALUES(16,'server','8869AC1','J11NW65','bldc-dm-2');
+INSERT INTO "cm_Comp" VALUES(17,'server','8869AC1','J11NW66','bldc-tiebreak-quorum-0');
+INSERT INTO "cm_Comp" VALUES(18,'rack','1410HPB','J11L7Z8','BLDC-A3');
+INSERT INTO "cm_Comp" VALUES(19,'storageEnclosure','6413HC1','J11L3AB','6413HC1-J11L3AB');
+INSERT INTO "cm_Comp" VALUES(20,'storageEnclosure','6413HC1','J11L3AM','6413HC1-J11L3AM');
+INSERT INTO "cm_Comp" VALUES(21,'server','8871AC3','J11L363','bldc-dss-2');
+INSERT INTO "cm_Comp" VALUES(22,'server','8871AC3','J11L364','bldc-dss-3');
+INSERT INTO "cm_Comp" VALUES(23,'storageEnclosure','6413HC1','J11L3AN','6413HC1-J11L3AN');
+INSERT INTO "cm_Comp" VALUES(24,'storageEnclosure','6413HC1','J11L3AP','6413HC1-J11L3AP');
+INSERT INTO "cm_Comp" VALUES(25,'server','8871AC3','J11L365','bldc-dss-4');
+INSERT INTO "cm_Comp" VALUES(26,'server','8871AC3','J11L366','bldc-dss-5');
+INSERT INTO "cm_Comp" VALUES(27,'rack','1410HPB','J11L7Z3','ICTC-A1');
+INSERT INTO "cm_Comp" VALUES(28,'storageEnclosure','6413HC1','J11L3AG','6413HC1-J11L3AG');
+INSERT INTO "cm_Comp" VALUES(29,'storageEnclosure','6413HC1','J11L3DK','6413HC1-J11L3DK');
+INSERT INTO "cm_Comp" VALUES(30,'server','8871AC3','J11L367','ictc-dss-0');
+INSERT INTO "cm_Comp" VALUES(31,'server','8871AC3','J11L368','ictc-dss-1');
+INSERT INTO "cm_Comp" VALUES(32,'rack','1410HPB','J11L7Z6','ICTC-A2');
+INSERT INTO "cm_Comp" VALUES(33,'server','8869AC1','J11L3BC','ictc-ces-0');
+INSERT INTO "cm_Comp" VALUES(34,'server','8869AC1','J11L3BD','ictc-ces-1');
+INSERT INTO "cm_Comp" VALUES(35,'server','8869AC1','J11L3BE','ictc-ces-2');
+INSERT INTO "cm_Comp" VALUES(36,'server','8869AC1','J11L3BF','ictc-ces-3');
+INSERT INTO "cm_Comp" VALUES(37,'server','8869AC1','J11L3KT','ictc-isklm-0');
+INSERT INTO "cm_Comp" VALUES(38,'server','8869AC1','J11L3KV','ictc-isklm-1');
+INSERT INTO "cm_Comp" VALUES(39,'server','8869AC1','J11L3KW','ictc-isklm-2');
+INSERT INTO "cm_Comp" VALUES(40,'rack','1410HPB','J11L7Z7','ICTC-A3');
+INSERT INTO "cm_Comp" VALUES(41,'storageEnclosure','6413HC1','J11L3AC','6413HC1-J11L3AC');
+INSERT INTO "cm_Comp" VALUES(42,'storageEnclosure','6413HC1','J11L3AD','6413HC1-J11L3AD');
+INSERT INTO "cm_Comp" VALUES(43,'server','8871AC3','J11L36C','ictc-dss-2');
+INSERT INTO "cm_Comp" VALUES(44,'server','8871AC3','J11L36B','ictc-dss-3');
+INSERT INTO "cm_Comp" VALUES(45,'storageEnclosure','6413HC1','J11L3AE','6413HC1-J11L3AE');
+INSERT INTO "cm_Comp" VALUES(46,'storageEnclosure','6413HC1','J11L3AF','6413HC1-J11L3AF');
+INSERT INTO "cm_Comp" VALUES(47,'server','8871AC3','J11L36A','ictc-dss-4');
+INSERT INTO "cm_Comp" VALUES(48,'server','8871AC3','J11L369','ictc-dss-5');
+INSERT INTO "cm_Comp" VALUES(49,'storageServer','DSS-G220',NULL,'bdss0-1');
+INSERT INTO "cm_Comp" VALUES(50,'storageServer','DSS-G220',NULL,'bdss2-3');
+INSERT INTO "cm_Comp" VALUES(51,'storageServer','DSS-G220',NULL,'bdss4-5');
+INSERT INTO "cm_Comp" VALUES(52,'storageServer','DSS-G220',NULL,'idss0-1');
+INSERT INTO "cm_Comp" VALUES(53,'storageServer','DSS-G220',NULL,'idss2-3');
+INSERT INTO "cm_Comp" VALUES(54,'storageServer','DSS-G220',NULL,'idss4-5');
+CREATE TABLE cm_RackExtra
+(
+  compId INTEGER PRIMARY KEY REFERENCES cm_Comp (compId) ON DELETE CASCADE
+);
+INSERT INTO "cm_RackExtra" VALUES(1);
+INSERT INTO "cm_RackExtra" VALUES(6);
+INSERT INTO "cm_RackExtra" VALUES(18);
+INSERT INTO "cm_RackExtra" VALUES(27);
+INSERT INTO "cm_RackExtra" VALUES(32);
+INSERT INTO "cm_RackExtra" VALUES(40);
+CREATE TABLE cm_ServerExtra
+(
+  compId INTEGER PRIMARY KEY REFERENCES cm_Comp (compId) ON DELETE CASCADE,
+  nodeNumber INTEGER UNIQUE
+);
+INSERT INTO "cm_ServerExtra" VALUES(7,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(8,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(9,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(10,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(11,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(12,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(13,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(14,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(15,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(16,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(17,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(33,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(34,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(35,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(36,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(37,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(38,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(39,NULL);
+INSERT INTO "cm_ServerExtra" VALUES(4,1);
+INSERT INTO "cm_ServerExtra" VALUES(22,2);
+INSERT INTO "cm_ServerExtra" VALUES(25,3);
+INSERT INTO "cm_ServerExtra" VALUES(31,4);
+INSERT INTO "cm_ServerExtra" VALUES(43,5);
+INSERT INTO "cm_ServerExtra" VALUES(48,6);
+INSERT INTO "cm_ServerExtra" VALUES(5,7);
+INSERT INTO "cm_ServerExtra" VALUES(21,8);
+INSERT INTO "cm_ServerExtra" VALUES(26,9);
+INSERT INTO "cm_ServerExtra" VALUES(30,10);
+INSERT INTO "cm_ServerExtra" VALUES(44,11);
+INSERT INTO "cm_ServerExtra" VALUES(47,12);
+CREATE TABLE cm_StorageEnclosureExtra
+(
+  compId INTEGER PRIMARY KEY REFERENCES cm_Comp (compId) ON DELETE CASCADE,
+  displayId INTEGER
+);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(2,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(3,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(19,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(20,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(23,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(24,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(28,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(29,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(41,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(42,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(45,NULL);
+INSERT INTO "cm_StorageEnclosureExtra" VALUES(46,NULL);
+CREATE TABLE cm_LocType
+(
+  compType TEXT NOT NULL REFERENCES cm_CompType (symbol),
+  containerType TEXT NOT NULL REFERENCES cm_CompType (symbol)
+);
+INSERT INTO "cm_LocType" VALUES('server','rack');
+INSERT INTO "cm_LocType" VALUES('storageEnclosure','rack');
+INSERT INTO "cm_LocType" VALUES('server','storageServer');
+INSERT INTO "cm_LocType" VALUES('storageEnclosure','storageServer');
+CREATE TABLE cm_StorageServerSpecExtra
+(
+  partNumber TEXT COLLATE nocase PRIMARY KEY REFERENCES cm_CompSpec (partNumber) ON DELETE CASCADE
+);
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G201');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G202');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G203');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G204');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G205');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G206');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G210');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G220');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G230');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G240');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G250');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('DSS-G260');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GL2');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GL4');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GL6');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GS1');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GS2');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GS4');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GS6');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GSS21S');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GSS22S');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GSS24');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GSS24S');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GSS26');
+INSERT INTO "cm_StorageServerSpecExtra" VALUES('GSS26S');
+CREATE TABLE cm_StorageServerExtra
+(
+  compId INTEGER PRIMARY KEY REFERENCES cm_Comp (compId) ON DELETE CASCADE
+);
+INSERT INTO "cm_StorageServerExtra" VALUES(49);
+INSERT INTO "cm_StorageServerExtra" VALUES(50);
+INSERT INTO "cm_StorageServerExtra" VALUES(51);
+INSERT INTO "cm_StorageServerExtra" VALUES(52);
+INSERT INTO "cm_StorageServerExtra" VALUES(53);
+INSERT INTO "cm_StorageServerExtra" VALUES(54);
+CREATE TABLE cm_Loc
+(
+  compId INTEGER REFERENCES cm_Comp (compId) ON DELETE CASCADE,
+  containerId INTEGER REFERENCES cm_Comp (compId) ON DELETE CASCADE,
+  position INTEGER NOT NULL
+);
+INSERT INTO "cm_Loc" VALUES(2,1,1);
+INSERT INTO "cm_Loc" VALUES(3,1,6);
+INSERT INTO "cm_Loc" VALUES(4,1,11);
+INSERT INTO "cm_Loc" VALUES(5,1,13);
+INSERT INTO "cm_Loc" VALUES(7,6,1);
+INSERT INTO "cm_Loc" VALUES(8,6,2);
+INSERT INTO "cm_Loc" VALUES(9,6,3);
+INSERT INTO "cm_Loc" VALUES(10,6,4);
+INSERT INTO "cm_Loc" VALUES(11,6,5);
+INSERT INTO "cm_Loc" VALUES(12,6,6);
+INSERT INTO "cm_Loc" VALUES(13,6,7);
+INSERT INTO "cm_Loc" VALUES(14,6,8);
+INSERT INTO "cm_Loc" VALUES(15,6,9);
+INSERT INTO "cm_Loc" VALUES(16,6,10);
+INSERT INTO "cm_Loc" VALUES(17,6,11);
+INSERT INTO "cm_Loc" VALUES(19,18,1);
+INSERT INTO "cm_Loc" VALUES(20,18,6);
+INSERT INTO "cm_Loc" VALUES(23,18,15);
+INSERT INTO "cm_Loc" VALUES(24,18,20);
+INSERT INTO "cm_Loc" VALUES(25,18,25);
+INSERT INTO "cm_Loc" VALUES(26,18,27);
+INSERT INTO "cm_Loc" VALUES(28,27,1);
+INSERT INTO "cm_Loc" VALUES(29,27,6);
+INSERT INTO "cm_Loc" VALUES(30,27,11);
+INSERT INTO "cm_Loc" VALUES(31,27,13);
+INSERT INTO "cm_Loc" VALUES(33,32,1);
+INSERT INTO "cm_Loc" VALUES(34,32,2);
+INSERT INTO "cm_Loc" VALUES(35,32,3);
+INSERT INTO "cm_Loc" VALUES(36,32,4);
+INSERT INTO "cm_Loc" VALUES(37,32,5);
+INSERT INTO "cm_Loc" VALUES(38,32,6);
+INSERT INTO "cm_Loc" VALUES(39,32,7);
+INSERT INTO "cm_Loc" VALUES(41,40,1);
+INSERT INTO "cm_Loc" VALUES(42,40,6);
+INSERT INTO "cm_Loc" VALUES(43,40,11);
+INSERT INTO "cm_Loc" VALUES(44,40,13);
+INSERT INTO "cm_Loc" VALUES(45,40,15);
+INSERT INTO "cm_Loc" VALUES(46,40,20);
+INSERT INTO "cm_Loc" VALUES(47,40,25);
+INSERT INTO "cm_Loc" VALUES(48,40,27);
+INSERT INTO "cm_Loc" VALUES(2,49,1);
+INSERT INTO "cm_Loc" VALUES(3,49,2);
+INSERT INTO "cm_Loc" VALUES(4,49,3);
+INSERT INTO "cm_Loc" VALUES(5,49,4);
+INSERT INTO "cm_Loc" VALUES(28,52,1);
+INSERT INTO "cm_Loc" VALUES(29,52,2);
+INSERT INTO "cm_Loc" VALUES(30,52,3);
+INSERT INTO "cm_Loc" VALUES(31,52,4);
+INSERT INTO "cm_Loc" VALUES(21,18,11);
+INSERT INTO "cm_Loc" VALUES(22,18,13);
+INSERT INTO "cm_Loc" VALUES(19,50,1);
+INSERT INTO "cm_Loc" VALUES(20,50,2);
+INSERT INTO "cm_Loc" VALUES(21,50,3);
+INSERT INTO "cm_Loc" VALUES(22,50,4);
+INSERT INTO "cm_Loc" VALUES(23,51,1);
+INSERT INTO "cm_Loc" VALUES(24,51,2);
+INSERT INTO "cm_Loc" VALUES(25,51,3);
+INSERT INTO "cm_Loc" VALUES(26,51,4);
+INSERT INTO "cm_Loc" VALUES(41,53,1);
+INSERT INTO "cm_Loc" VALUES(42,53,2);
+INSERT INTO "cm_Loc" VALUES(43,53,3);
+INSERT INTO "cm_Loc" VALUES(44,53,4);
+INSERT INTO "cm_Loc" VALUES(45,54,1);
+INSERT INTO "cm_Loc" VALUES(46,54,2);
+INSERT INTO "cm_Loc" VALUES(47,54,3);
+INSERT INTO "cm_Loc" VALUES(48,54,4);
+CREATE VIEW cm_RackSpec AS
+  SELECT * FROM cm_CompSpec JOIN cm_RackSpecExtra USING (partNumber);
+CREATE VIEW cm_ServerSpec AS
+  SELECT * FROM cm_CompSpec JOIN cm_ServerSpecExtra USING (partNumber);
+CREATE VIEW cm_StorageEnclosureSpec AS
+  SELECT * FROM cm_CompSpec JOIN cm_StorageEnclosureSpecExtra USING (partNumber);
+CREATE TRIGGER cm_CompSpecUpdate UPDATE ON cm_CompSpec
+  WHEN old.partNumber != new.partNumber OR old.compType != new.compType
+  BEGIN
+    SELECT raise(FAIL, 'a component specification''s partNumber and compType cannot be changed.');
+  END;
+CREATE VIEW cm_Rack AS
+  SELECT * FROM cm_Comp JOIN cm_RackExtra USING (compId);
+CREATE VIEW cm_Server AS
+  SELECT * FROM cm_Comp JOIN cm_ServerExtra USING (compId);
+CREATE VIEW cm_StorageEnclosure AS
+  SELECT * FROM cm_Comp JOIN cm_StorageEnclosureExtra USING (compId);
+CREATE VIEW cm_CompFull AS SELECT *
+  FROM cm_Comp JOIN cm_CompSpec USING (compType, partNumber);
+CREATE VIEW cm_RackFull AS SELECT * FROM
+  cm_Rack JOIN cm_RackSpec USING (compType, partNumber);
+CREATE VIEW cm_ServerFull AS SELECT * FROM
+  cm_Server JOIN cm_ServerSpec USING (compType, partNumber);
+CREATE VIEW cm_StorageEnclosureFull AS SELECT * FROM
+  cm_StorageEnclosure JOIN cm_StorageEnclosureSpec USING (compType, partNumber);
+CREATE TRIGGER cm_CompIdUpdate UPDATE ON cm_Comp
+  WHEN old.compId != new.compId OR old.compType != new.compType
+  BEGIN
+    SELECT raise(FAIL, 'component IDs and component types are immutable');
+  END;
+CREATE TRIGGER cm_CompIdUpdatePartNumber UPDATE ON cm_Comp
+  WHEN old.partNumber != new.partNumber AND
+    new.compType != (SELECT compType FROM cm_CompSpec WHERE partNumber = new.partNumber)
+  BEGIN
+    SELECT raise(FAIL, 'changing a part number cannot change the component type');
+  END;
+CREATE TRIGGER cm_CompNameUpdate AFTER UPDATE OF name ON cm_Comp
+  WHEN
+    new.name IS NULL
+  BEGIN
+    UPDATE cm_Comp SET name = partNumber || '-' || ifnull(serialNumber, 'ID' || compId)
+    WHERE compId = new.compId;
+  END;
+CREATE TRIGGER cm_CompNamePnSnUpdate AFTER UPDATE OF partNumber, serialNumber ON cm_Comp
+  WHEN
+     new.name = old.partNumber || '-' || ifnull(old.serialNumber, 'ID' || old.compId)
+  BEGIN
+    UPDATE cm_Comp SET name = NULL
+    WHERE compId = new.compId;
+  END;
+CREATE TRIGGER cm_CompNameInsert AFTER INSERT ON cm_Comp
+  BEGIN
+    UPDATE cm_Comp SET name = name WHERE compId = new.compId;
+  END;
+CREATE TRIGGER cm_DisplayIdUpdate UPDATE OF displayId ON cm_StorageEnclosureExtra
+  WHEN NOT
+    (new.displayId IS NULL OR
+     (SELECT hasDisplayId FROM cm_StorageEnclosureFull WHERE compId = new.compId))
+  BEGIN
+    SELECT raise(FAIL, 'enclosure does not support a display ID');
+  END;
+CREATE TRIGGER cm_DisplayIdInsert AFTER INSERT ON cm_StorageEnclosureExtra
+  BEGIN
+    UPDATE cm_StorageEnclosureExtra SET displayId = displayId WHERE compId = new.compId;
+  END;
+CREATE VIEW cm_LocFull AS
+  SELECT * FROM cm_Loc JOIN cm_CompFull USING (compId);
+CREATE VIEW cm_ValidContainer AS
+  SELECT comp.compId AS compId, container.compId AS containerId
+  FROM cm_LocType
+    JOIN cm_CompFull AS comp USING (compType)
+    JOIN cm_CompFull AS container ON containerType = container.compType;
+CREATE VIEW cm_RackMisfit AS
+  SELECT cm_LocFull.*
+  FROM cm_LocFull JOIN cm_RackFull ON (cm_LocFull.containerId = cm_RackFull.compId)
+  WHERE position <= 0 OR position + cm_LocFull.height > cm_RackFull.height + 1;
+CREATE VIEW cm_StorageServerSpec AS
+  SELECT * FROM cm_CompSpec JOIN cm_StorageServerSpecExtra USING (partNumber);
+CREATE VIEW cm_StorageServer AS
+  SELECT * FROM cm_Comp JOIN cm_StorageServerExtra USING (compId);
+CREATE VIEW cm_StorageServerFull AS
+  SELECT * FROM cm_StorageServer JOIN cm_StorageServerSpec USING (compType, partNumber);
+CREATE VIEW cm_LocInRackFull AS
+  SELECT cm_LocFull.* FROM cm_LocFull JOIN cm_Rack ON (cm_LocFull.containerId = cm_Rack.compId);
+CREATE VIEW cm_LocRackConflict AS
+  SELECT a.compId AS aId, b.compId AS bId
+  FROM cm_LocInRackFull AS a JOIN cm_LocInRackFull AS b
+    ON (a.compId != b.compId
+      AND a.containerId = b.containerId
+      AND a.position < b.position + b.height
+      AND b.position < a.position + a.height);
+CREATE TRIGGER cm_LocInsertValidTypes INSERT ON cm_Loc
+  WHEN 
+    (SELECT 1 FROM cm_ValidContainer
+      WHERE compId = new.compId AND containerId = new.containerId) IS NULL
+  BEGIN
+    SELECT raise(FAIL, 'invalid container type for component');
+  END;
+CREATE TRIGGER cm_LocRackConflict AFTER INSERT ON cm_Loc
+  WHEN 
+    (SELECT 1 FROM cm_LocRackConflict WHERE aId = new.compId) IS NOT NULL
+  BEGIN
+    SELECT raise(FAIL, 'component location conflicts with existing component');
+  END;
+CREATE TRIGGER cm_LocRackMisfit AFTER INSERT ON cm_Loc
+  WHEN
+    (SELECT 1 FROM cm_RackMisfit WHERE compId = new.compId) IS NOT NULL
+  BEGIN
+    SELECT raise(FAIL, 'component location does not fit in rack');
+  END;
+COMMIT;
