@@ -1,3 +1,11 @@
+new ISE class - cloudmesh-community:
+https://github.com/cloudmesh-community/book
+
+cloud computing book - 1080 pages, on page 850, about Go language
+
+Go language is google used to replace c++
+
+
 nagios event handlers
 https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/eventhandlers.html
 
