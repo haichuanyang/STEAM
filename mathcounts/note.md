@@ -1,5 +1,7 @@
 python calculate cubic root:
 
+import math;
+
 math.pow(math.pi/3,1/3.)*2
 
 no need for TI-83 plus calculator over 100 bucks
